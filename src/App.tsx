@@ -1,26 +1,19 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { FC, useEffect } from "react";
+import Header from "./components/Header/Header";
+import Hero from "./components/Hero/Hero";
+import UsersList from "./components/UsersList/UsersList";
+import useUsersContext from "./contexts/UsersContext";
 
-function App() {
+const App: FC = () => {
+  const { users } = useUsersContext();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <Hero />
+      <UsersList users={users} />
+    </>
   );
-}
+};
 
 export default App;
