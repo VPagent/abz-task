@@ -1,0 +1,39 @@
+.section {
+  padding-top: 140px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.textLabel {
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 50px;
+}
+
+.textInput {
+  padding: 14px 16px;
+
+  border: 1px solid var(--input-border-color);
+  border-radius: 4px;
+
+  ::placeholder {
+    color: var(--placeholder-color);
+  }
+}
+
+.inputBottomText {
+  margin-left: 16px;
+
+  font-size: 12px;
+  line-height: 14px;
+
+  color: var(--placeholder-color);
+}
+
+.radioTitle {
+  margin-top: 25px;
+}

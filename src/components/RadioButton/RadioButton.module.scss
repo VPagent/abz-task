@@ -1,0 +1,36 @@
+.label {
+  position: relative;
+}
+
+.input {
+  position: absolute;
+  opacity: 0;
+
+  &:checked .fillCircle {
+    background-color: var(--blue-color);
+  }
+}
+
+.bigCircle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 20px;
+  height: 20px;
+
+  border-radius: 50%;
+  border: 1px solid var(--blue-color);
+}
+
+.fillCircle {
+  display: block;
+  width: 10px;
+  height: 10px;
+
+  border-radius: 50%;
+}
+
+.fillCircle.checked {
+  background-color: var(--blue-color);
+}

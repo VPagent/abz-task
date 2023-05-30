@@ -1,0 +1,19 @@
+@import "../../static/sass/mixins.scss";
+
+.header {
+  display: flex;
+  flex-direction: column;
+
+  padding: 13px 0px;
+  background-color: #ffffff;
+}
+
+.headerBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.button {
+  @include yellowBtn;
+}

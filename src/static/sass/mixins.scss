@@ -13,4 +13,19 @@
 
   font-weight: 400;
   font-size: 16px;
+
+  text-decoration: none;
+  cursor: pointer;
+
+  transition: background-color 250ms ease-in-out, color 250ms ease-in-out;
+
+  &:hover,
+  &:focus {
+    background-color: var(--yellow-hover-color);
+  }
+
+  &:disabled {
+    background-color: var(--disabled-color);
+    color: white;
+  }
 }

@@ -1,0 +1,71 @@
+@import "../../static/sass/mixins.scss";
+
+.section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  @media screen and (max-width: 767.9px) {
+    padding-top: 40px;
+    padding-bottom: 70px;
+
+    background-image: url("../../../public/images/mobile1x.png");
+    background-size: cover;
+    background-position: center;
+    @media screen and (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url("../../../public/images/mobile2x.png");
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    // padding-top: 40px;
+    // padding-bottom: 70px;
+
+    background-image: url("../../../public/images/tablet1x.png");
+    background-size: cover;
+    background-position: center;
+    @media screen and (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url("../../../public/images/tablet2x.png");
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    // padding-top: 40px;
+    // padding-bottom: 70px;
+
+    background-image: url("../../../public/images/desktop1x.png");
+    background-size: cover;
+    background-position: center;
+    @media screen and (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url("../../../public/images/desktop2x.png");
+    }
+  }
+
+  @media screen and (min-width: 2560px) {
+    // padding-top: 40px;
+    // padding-bottom: 70px;
+
+    background-image: url("../../../public/images/bigDesktop1x.png");
+    background-size: cover;
+    background-position: center;
+    @media screen and (min-device-pixel-ratio: 2),
+      (min-resolution: 192dpi),
+      (min-resolution: 2dppx) {
+      background-image: url("../../../public/images/bigDesktop2x.png");
+    }
+  }
+}
+.mainTitle {
+  font-size: 40px;
+  line-height: 40px;
+}
+
+.button {
+  @include yellowBtn;
+}

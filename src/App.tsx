@@ -1,17 +1,27 @@
 import { FC, useEffect } from "react";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Header from "./components/Header/Header";
 import Hero from "./components/Hero/Hero";
 import UsersList from "./components/UsersList/UsersList";
 import useUsersContext from "./contexts/UsersContext";
+import RegistrationForm from "./components/RegistrationForm/RegistrationForm";
+import { getPosition, getToken } from "./services/API";
 
 const App: FC = () => {
-  const { users } = useUsersContext();
+  const { token, onRegistrationComplete, onResetToken } = useUsersContext();
 
   return (
     <>
-      <Header />
-      <Hero />
-      <UsersList users={users} />
+      <Header token={token} onResetToken={onResetToken} />
+      <Hero token={token} onResetToken={onResetToken} />
+      <UsersList />
+      <RegistrationForm
+        token={token}
+        onRegistrationComplete={onRegistrationComplete}
+        onResetToken={onResetToken}
+      />
+      <ToastContainer />
     </>
   );
 };

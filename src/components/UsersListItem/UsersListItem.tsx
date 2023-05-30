@@ -10,12 +10,12 @@ const UsersListItem: FC<Props> = ({ user }) => {
 
   return (
     <div className={styles.card}>
-      <div>
-        <img src={photo} alt={name} />
+      <div className={styles.photoBox}>
+        <img className={styles.img} src={photo} alt={name} />
       </div>
-      <p>{name}</p>
-      <p>{position}</p>
-      <p>{phone}</p>
+      <p className={styles.name}>{name}</p>
+      <p className={styles.position}>{position}</p>
+      <p className={styles.phone}>{phone}</p>
     </div>
   );
 };
