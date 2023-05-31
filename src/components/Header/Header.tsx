@@ -15,19 +15,21 @@ const Header: FC<Props> = ({ token, onResetToken }) => {
       <Container>
         <div className={styles.headerBox}>
           <Logo className={styles.logoIcon} />
-          <a href="#users-list" className={styles.button}>
-            Users
-          </a>
-          {!token && (
-            <a href="#sign-up" className={styles.button}>
-              Sign up
+          <div className={styles.controls}>
+            <a href="#users-list" className={styles.button}>
+              Users
             </a>
-          )}
-          {token && (
-            <Button className={styles.button} onClick={onResetToken}>
-              Log out
-            </Button>
-          )}
+            {!token && (
+              <a href="#sign-up" className={styles.button}>
+                Sign up
+              </a>
+            )}
+            {token && (
+              <Button className={styles.button} onClick={onResetToken}>
+                Log out
+              </Button>
+            )}
+          </div>
         </div>
       </Container>
     </header>

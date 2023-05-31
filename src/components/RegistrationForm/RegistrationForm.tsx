@@ -1,20 +1,25 @@
 import { ChangeEvent, FC, useEffect, useState } from "react";
 import { toast } from "react-toastify";
+import cn from "clsx";
 import styles from "./RegistrationForm.module.scss";
 import Container from "../Container/Container";
 import Button from "../Button/Button";
 import { getPosition, registrationUser } from "../../services/API";
 import { UseValidate } from "../../hooks/UseValidate";
 import RadioButton from "../RadioButton/RadioButton";
+import { cutString } from "../../helpers/utils";
+import Loader from "../Loader/Loader";
 
 type Props = {
   token: string;
+  isLoading: boolean;
   onRegistrationComplete: () => void;
   onResetToken: () => void;
 };
 
 const RegistrationForm: FC<Props> = ({
   token,
+  isLoading,
   onRegistrationComplete,
   onResetToken,
 }) => {
@@ -24,7 +29,6 @@ const RegistrationForm: FC<Props> = ({
   const [userPhone, setUserPhone] = useState("");
   const [userPosition, setUserPosition] = useState("");
   const [userPhoto, setUserPhoto] = useState<any>(null);
-  const [userImage, setUserImage] = useState("");
   const {
     validateName,
     validateEmail,
@@ -38,6 +42,10 @@ const RegistrationForm: FC<Props> = ({
   const isCorrectPhone = validatePhone(userPhone);
   const isCorrectPosition = validatePosition(userPosition);
   const isCorrectFile = validateFile(userPhoto);
+
+  const userPhotoName = userPhoto
+    ? cutString(userPhoto.name, 15)
+    : "Upload your photo";
 
   const isAllDataCorrect = () => {
     if (
@@ -69,6 +77,8 @@ const RegistrationForm: FC<Props> = ({
   }, []);
 
   const handleChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
+    console.log("rabotayou");
+
     switch (event.target.name) {
       case "name":
         return setUserName(event.target.value);
@@ -81,9 +91,7 @@ const RegistrationForm: FC<Props> = ({
       case "photo":
         if (event?.target?.files) {
           const file = event?.target?.files[0];
-          const src = file && window.URL.createObjectURL(file);
           setUserPhoto(file);
-          setUserImage(src);
         }
         return;
 
@@ -113,10 +121,15 @@ const RegistrationForm: FC<Props> = ({
   return (
     <section className={styles.section}>
       <Container>
-        <h2>Working with POST request</h2>
+        <h2 className={styles.title}>Working with POST request</h2>
         {!token && (
           <form className={styles.form} id="sign-up">
-            <label className={styles.textLabel}>
+            <label
+              className={cn(
+                styles.textLabel,
+                userName.length && !isCorrectName && styles.errorText
+              )}
+            >
               <input
                 className={styles.textInput}
                 onChange={handleChangeInput}
@@ -125,18 +138,28 @@ const RegistrationForm: FC<Props> = ({
                 placeholder="Your name"
               />
             </label>
-            <label className={styles.textLabel}>
+            <label
+              className={cn(
+                styles.textLabel,
+                userEmail.length && !isCorrectEmail && styles.errorText
+              )}
+            >
               <input
-                className={styles.textInput}
+                className={cn(styles.textInput)}
                 onChange={handleChangeInput}
                 type="email"
                 name="email"
                 placeholder="Email"
               />
             </label>
-            <label className={styles.textLabel}>
+            <label
+              className={cn(
+                styles.textLabel,
+                userPhone.length && !isCorrectPhone && styles.errorText
+              )}
+            >
               <input
-                className={styles.textInput}
+                className={cn(styles.textInput)}
                 onChange={handleChangeInput}
                 type="text"
                 name="phone"
@@ -146,7 +169,6 @@ const RegistrationForm: FC<Props> = ({
                 +38 (XXX) XXX - XX - XX
               </span>
             </label>
-
             <span className={styles.radioTitle}>Select your position</span>
             {availablePositions &&
               availablePositions.map((positionObject: any) => (
@@ -157,40 +179,56 @@ const RegistrationForm: FC<Props> = ({
                   value={positionObject.id}
                   //@ts-ignore
                   onChange={handleChangeInput}
-                  label={<span>{positionObject.name} </span>}
-                  checkIdentifier={positionObject.id === userPosition}
+                  label={
+                    <span className={styles.radioText}>
+                      {positionObject.name}{" "}
+                    </span>
+                  }
+                  checkIdentifier={userPosition}
                 />
-                // <label key={positionObject.id}>
-                //   <span className={styles.labelText}>
-                //     {positionObject.name}
-                //   </span>
-                //   <input
-                //     className={styles.radioInput}
-                //     onChange={handleChangeInput}
-                //     type="radio"
-                //     name="position"
-                //     value={positionObject.id}
-                //   />
-                // </label>
               ))}
-
-            <label>
-              <span>Upload your photo</span>
-              <input
-                className={styles.photoInput}
-                onChange={handleChangeInput}
-                type="file"
-                accept="image/jpg, image/jpeg"
-                name="photo"
-              />
-            </label>
-
-            <Button onClick={handleFormSubmit} disabled={!isAllDataCorrect()}>
-              Sign up
-            </Button>
+            <div className={styles.uploadBox}>
+              <label
+                className={cn(
+                  styles.uploaderLabel,
+                  userPhoto && !isCorrectFile && styles.errorFile
+                )}
+              >
+                <span className={styles.uploadingPhotoTitle}>Upload</span>
+                <input
+                  className={styles.photoInput}
+                  onChange={handleChangeInput}
+                  type="file"
+                  accept="image/jpg, image/jpeg"
+                  name="photo"
+                />
+              </label>
+              <p
+                className={cn(
+                  styles.userPath,
+                  userPhoto && !isCorrectFile && styles.errorFile
+                )}
+              >
+                {userPhotoName}
+              </p>
+            </div>
+            {!isLoading && (
+              <Button
+                className={styles.button}
+                onClick={handleFormSubmit}
+                disabled={!isAllDataCorrect()}
+              >
+                Sign up
+              </Button>
+            )}
+            {isLoading && <Loader className={styles.loader} />}
           </form>
         )}
-        {token && <Button onClick={onResetToken}>Log out</Button>}
+        {token && (
+          <Button className={styles.button} onClick={onResetToken}>
+            Log out
+          </Button>
+        )}
       </Container>
     </section>
   );

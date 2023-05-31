@@ -1,5 +1,6 @@
 @import "./static/sass/variables.scss";
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Nunito&family=Space+Grotesk:wght@400;500;700&display=swap");
+@import "./static/sass/reset.scss";
 
 body {
   margin: 0;
@@ -10,8 +11,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: var(--bg-color);
   font-family: "Nunito", sans-serif;
+  font-weight: 400;
   font-size: 16px;
   line-height: 26px;
+  box-sizing: border-box;
 }
 
 code {

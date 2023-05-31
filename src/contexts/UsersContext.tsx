@@ -15,6 +15,7 @@ const UserContext = createContext({
   token: "",
   numberOfPages: 1,
   page: 1,
+  isLoading: false,
   onLoadMore: () => {},
   onRegistrationComplete: () => {},
   onResetToken: () => {},
@@ -28,11 +29,14 @@ export const UsersProvider: FC<Props> = ({ children }) => {
   const [users, setUsers] = useState(null);
   const [page, setPage] = useState(1);
   const [numberOfPages, setNumberOfPages] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
   const [token, setToken] = useState<string>(
     JSON.parse(localStorage.getItem(USER_TOKEN_KEY) as string) || ""
   );
 
   useEffect(() => {
+    setIsLoading(true);
+
     fetchUsers(page)
       .then((data) => {
         if (users) {
@@ -46,7 +50,8 @@ export const UsersProvider: FC<Props> = ({ children }) => {
           console.log("data in context", data);
         }
       })
-      .catch((error) => console.log(error.message));
+      .catch((error) => console.log(error.message))
+      .finally(() => setIsLoading(false));
   }, [page]);
 
   useEffect(() => {
@@ -66,6 +71,7 @@ export const UsersProvider: FC<Props> = ({ children }) => {
   };
 
   const onRegistrationComplete = () => {
+    setIsLoading(true);
     setUsers(null);
     setPage(1);
 
@@ -74,7 +80,8 @@ export const UsersProvider: FC<Props> = ({ children }) => {
         setUsers(data.users);
         setNumberOfPages(data.total_pages);
       })
-      .catch((error) => console.log(error.message));
+      .catch((error) => console.log(error.message))
+      .finally(() => setIsLoading(false));
   };
 
   console.log("Users", users);
@@ -86,6 +93,7 @@ export const UsersProvider: FC<Props> = ({ children }) => {
         page,
         token,
         numberOfPages,
+        isLoading,
         onResetToken,
         onLoadMore,
         onRegistrationComplete,

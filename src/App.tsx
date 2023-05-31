@@ -9,7 +9,8 @@ import RegistrationForm from "./components/RegistrationForm/RegistrationForm";
 import { getPosition, getToken } from "./services/API";
 
 const App: FC = () => {
-  const { token, onRegistrationComplete, onResetToken } = useUsersContext();
+  const { token, isLoading, onRegistrationComplete, onResetToken } =
+    useUsersContext();
 
   return (
     <>
@@ -18,6 +19,7 @@ const App: FC = () => {
       <UsersList />
       <RegistrationForm
         token={token}
+        isLoading={isLoading}
         onRegistrationComplete={onRegistrationComplete}
         onResetToken={onResetToken}
       />

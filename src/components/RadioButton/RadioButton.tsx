@@ -20,16 +20,11 @@ const RadioButton: FC<Props> = ({
   checkIdentifier,
   onChange,
 }) => {
-  const isChecked = checkIdentifier === value;
+  const isChecked = checkIdentifier === value.toString();
 
-  console.log(isChecked);
-  const handleChange = (e: any) => {
-    console.log("srabotal");
-    onChange(e);
-  };
   return (
     <label className={cn(styles.label, className)}>
-      <span className={styles.bigCircle}>
+      <span className={cn(styles.bigCircle, isChecked && styles.checked)}>
         <span
           className={cn(styles.fillCircle, isChecked && styles.checked)}
         ></span>
@@ -37,7 +32,7 @@ const RadioButton: FC<Props> = ({
       {label}
       <input
         className={styles.input}
-        onChange={handleChange}
+        onChange={onChange}
         type="radio"
         name={name}
         value={value}
