@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/abz-task/static/css/main.0efd1eae.css",
+    "main.js": "/abz-task/static/js/main.cd1bbdd9.js",
+    "static/media/bigDesktop2x.png": "/abz-task/static/media/bigDesktop2x.1ed0daec3ce4f62be6f3.png",
+    "static/media/desktop2x.png": "/abz-task/static/media/desktop2x.1ab0315b5d163b9d5164.png",
+    "static/media/tablet2x.png": "/abz-task/static/media/tablet2x.6875aaf62634661ed633.png",
+    "static/media/bigDesktop1x.png": "/abz-task/static/media/bigDesktop1x.827be205d1bc9668d171.png",
+    "static/media/mobile2x.png": "/abz-task/static/media/mobile2x.d8c5770f7269d1f8f018.png",
+    "static/media/desktop1x.png": "/abz-task/static/media/desktop1x.b1ec0c0f86d0a6552d1a.png",
+    "static/media/tablet1x.png": "/abz-task/static/media/tablet1x.bc862e1edd97e2bc8228.png",
+    "static/media/mobile1x.png": "/abz-task/static/media/mobile1x.5c7804a68f6d28970c5e.png",
+    "static/media/logo.svg": "/abz-task/static/media/logo.575daf0141054e16d157590500ded155.svg",
+    "static/media/userPhotoPlaceholder.svg": "/abz-task/static/media/userPhotoPlaceholder.f600cc963a2095a21f47983038338c7e.svg",
+    "index.html": "/abz-task/index.html",
+    "main.0efd1eae.css.map": "/abz-task/static/css/main.0efd1eae.css.map",
+    "main.cd1bbdd9.js.map": "/abz-task/static/js/main.cd1bbdd9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0efd1eae.css",
+    "static/js/main.cd1bbdd9.js"
+  ]
+}
