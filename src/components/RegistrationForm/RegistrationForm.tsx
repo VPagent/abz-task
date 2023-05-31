@@ -114,6 +114,12 @@ const RegistrationForm: FC<Props> = ({
         console.log(resp);
       } catch (error: any) {
         console.log(error.message);
+      } finally {
+        setUserName("");
+        setUserEmail("");
+        setUserPhone("");
+        setUserPhoto(null);
+        setUserPosition("");
       }
     }
   };

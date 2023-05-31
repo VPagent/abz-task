@@ -37,7 +37,6 @@
   }
 
   @media screen and (min-width: 1024px) {
-    width: 1170px;
     padding-top: 164px;
     padding-bottom: 163px;
 
@@ -54,6 +53,7 @@
   @media screen and (min-width: 2560px) {
     // padding-top: 40px;
     // padding-bottom: 70px;
+    width: 1170px;
 
     background-image: url("../../../public/images/bigDesktop1x.png");
     background-size: cover;
